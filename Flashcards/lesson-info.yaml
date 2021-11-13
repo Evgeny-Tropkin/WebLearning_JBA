@@ -1,4 +1,6 @@
 type: framework
 content:
 - Setting up
-current_task: 0
+- Design
+- On the flip side
+current_task: 1
