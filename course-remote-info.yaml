@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/384602/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Sat, 13 Nov 2021 09:59:33 UTC
+update_date: Tue, 04 Jan 2022 15:01:29 UTC
 stages:
 - id: 625
   step: 10245
@@ -48,6 +48,8 @@ topics:
     theory_id: 12212
   - title: Comments
     theory_id: 7730
+  - title: Introduction to operating systems
+    theory_id: 9704
   - title: Absolute units
     theory_id: 10605
   - title: Relative units
@@ -58,10 +60,18 @@ topics:
     theory_id: 12228
   - title: Code style
     theory_id: 12446
-  - title: WebStorm
-    theory_id: 9492
+  - title: Introduction to Node.js
+    theory_id: 12691
   - title: Web development
     theory_id: 13931
+  - title: Introduction to JavaScript
+    theory_id: 8016
+  - title: Command line overview
+    theory_id: 8977
+  - title: Parameters and options
+    theory_id: 9746
+  - title: WebStorm
+    theory_id: 9492
   1:
   - title: Binary numbers
     theory_id: 5544
@@ -112,8 +122,6 @@ topics:
     theory_id: 6560
   - title: Lists
     theory_id: 8178
-  - title: Introduction to operating systems
-    theory_id: 9704
   - title: Pseudo-classes
     theory_id: 9762
   - title: Introduction to animation
@@ -130,10 +138,6 @@ topics:
     theory_id: 12219
   - title: Transitions
     theory_id: 13593
-  - title: Command line overview
-    theory_id: 8977
-  - title: Parameters and options
-    theory_id: 9746
   - title: Introduction to Linux
     theory_id: 9526
   - title: Starting with Git
