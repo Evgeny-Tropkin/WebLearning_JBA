@@ -260,6 +260,9 @@ files:
         }
     );
   learner_created: false
+- name: src/Styles/index.css
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/10246#comment
 status: Unchecked
 record: -1
