@@ -7,8 +7,9 @@ body {
 
 .quiz-area {
     align-self: flex-start;
-    background-color: white;
     border-radius: 20px;
+    background: white url("../Images/html-element.png");
+    background-size: cover;
     display: flex;
     flex-flow: column;
     height: 90vmin;
@@ -26,7 +27,7 @@ body {
 }
 
 .flex-container {
-    background-color: #cae5fd;
+    background-color: transparent;
     border-radius: inherit;
     text-align: center;
     margin: 0 10% 5% 10%;
@@ -39,7 +40,8 @@ body {
 }
 
 .flex-item {
-    background-color: #ffffff;
+    background-color: transparent;
+    border: 2px solid #cae5fd;
     border-radius: inherit;
     height: 30%;
     margin: 1%;
