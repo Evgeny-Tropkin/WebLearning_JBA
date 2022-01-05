@@ -1,7 +1,8 @@
 body {
-    display: flex;
-    justify-content: center;
     background-color: #cae5fd;
+    display: flex;
+    font-family: 'Ubuntu Mono', monospace;
+    justify-content: center;
 }
 
 .quiz-area {
