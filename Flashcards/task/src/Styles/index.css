@@ -27,16 +27,16 @@ body {
 }
 
 .flex-container {
+    align-content: center;
     background-color: transparent;
     border-radius: inherit;
-    text-align: center;
-    margin: 0 10% 5% 10%;
     display: flex;
+    flex-basis: 100vmin;
     flex-flow: row;
     flex-wrap: wrap;
-    flex-basis: 100vmin;
     justify-content: center;
-    align-content: center;
+    margin: 0 10% 5% 10%;
+    text-align: center;
 }
 
 .flex-item {
