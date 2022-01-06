@@ -6,14 +6,14 @@ body {
 }
 
 .quiz-area {
-    align-self: flex-start;
+    align-items: center;
     border-radius: 20px;
     background: white url("../Images/html-element.png");
     background-size: cover;
     display: flex;
     flex-flow: column;
     height: 90vmin;
-    justify-content: flex-start;
+    justify-content: space-around;
     margin: 20px;
     width: 90vmin;
 }
@@ -21,9 +21,9 @@ body {
 .quiz-title {
     background-color: #fd983f;
     border-radius: inherit;
-    margin: 7% 10% 3% 10%;
-    padding: 10px;
+    padding: 1vmin 2vmin;
     text-align: left;
+    width: 73vmin;
 }
 
 .flex-container {
@@ -31,12 +31,13 @@ body {
     background-color: transparent;
     border-radius: inherit;
     display: flex;
-    flex-basis: 100vmin;
+    flex-basis: 80vmin;
     flex-flow: row;
     flex-wrap: wrap;
+    height: 80vmin;
     justify-content: center;
-    margin: 0 10% 5% 10%;
     text-align: center;
+    width: 80vmin;
 }
 
 .flex-item {
