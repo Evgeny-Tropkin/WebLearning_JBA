@@ -267,11 +267,8 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/10246#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Error: Failed: "Wrong answer in test #4
-
-    The cards should form a table 3x3 and each of them should have equal width and height."
-  time: Thu, 06 Jan 2022 08:40:32 UTC
+  message: Congratulations!
+  time: Thu, 06 Jan 2022 16:03:09 UTC
 record: -1
