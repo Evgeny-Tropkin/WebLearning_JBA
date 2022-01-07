@@ -1,13 +1,21 @@
+body {
+    background-color: #cae5fd;
+    display: flex;
+    font-family: 'Ubuntu Mono', monospace;
+    justify-content: center;
+}
 
 .quiz-area {
     align-items: center;
     border-radius: 20px;
-    background: white url("../Images/html-element.png") no-repeat center;
-    background-clip: content-box;
+    background: white url("../Images/html-element.png");
+    background-size: cover;
     display: flex;
-    flex-basis: 300px;
     flex-flow: column;
-    font-family: 'Ubuntu Mono', monospace;
+    height: 90vmin;
+    justify-content: space-around;
+    margin: 20px;
+    width: 90vmin;
 }
 
 .quiz-title {
