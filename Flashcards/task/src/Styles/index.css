@@ -22,6 +22,7 @@ body {
     background-color: #fd983f;
     border-radius: inherit;
     padding: 1vmin 2vmin;
+    font-size: 3vmin;
     text-align: left;
     width: 73vmin;
 }
@@ -44,6 +45,7 @@ body {
     background-color: transparent;
     border: 2px solid #cae5fd;
     border-radius: inherit;
+    font-size: 1.8vmin;
     height: 30%;
     margin: 1%;
     width: 30%;
