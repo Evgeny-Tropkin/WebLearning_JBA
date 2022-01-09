@@ -1,19 +1,28 @@
+body {
+    background-color: #cae5fd;
+    display: flex;
+    font-family: 'Ubuntu Mono', monospace;
+    justify-content: center;
+}
 
 .quiz-area {
     align-items: center;
     border-radius: 20px;
-    background: white url("../Images/html-element.png") no-repeat center;
-    background-clip: content-box;
+    background: white url("../Images/html-element.png");
+    background-size: cover;
     display: flex;
-    flex-basis: 300px;
     flex-flow: column;
-    font-family: 'Ubuntu Mono', monospace;
+    height: 90vmin;
+    justify-content: space-around;
+    margin: 20px;
+    width: 90vmin;
 }
 
 .quiz-title {
     background-color: #fd983f;
     border-radius: inherit;
     padding: 1vmin 2vmin;
+    font-size: 3vmin;
     text-align: left;
     width: 73vmin;
 }
@@ -36,6 +45,7 @@
     background-color: transparent;
     border: 2px solid #cae5fd;
     border-radius: inherit;
+    font-size: 1.8vmin;
     height: 30%;
     margin: 1%;
     width: 30%;
