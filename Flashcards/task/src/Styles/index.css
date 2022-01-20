@@ -43,10 +43,33 @@ body {
 
 .card-item {
     background-color: transparent;
-    border: 2px solid #cae5fd;
     border-radius: inherit;
     font-size: 1.8vmin;
     height: 30%;
     margin: 1%;
+    transition: transform 1.5s ease;
+    transform-style: preserve-3d;
     width: 30%;
+}
+
+.card-item > * {
+    backface-visibility: hidden;
+    border-radius: inherit;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.card-item:hover {
+    transform: rotateY(180deg);
+}
+
+.back-side {
+    background-color: #fd983f;
+    border: 2px solid #fd983f;
+    transform: rotateY(180deg);
+}
+
+.front-side {
+    border: 2px solid #cae5fd;
 }
