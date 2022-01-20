@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/384602/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Sun, 09 Jan 2022 14:43:49 UTC
+update_date: Thu, 20 Jan 2022 16:35:46 UTC
 stages:
 - id: 625
   step: 10245
@@ -103,6 +103,10 @@ topics:
     theory_id: 12697
   - title: Clear
     theory_id: 12705
+  - title: Colors
+    theory_id: 7973
+  - title: Background
+    theory_id: 11670
   - title: Introduction to Flexbox
     theory_id: 11760
   - title: Orientation and display order
@@ -111,10 +115,6 @@ topics:
     theory_id: 11776
   - title: Axis alignment
     theory_id: 11784
-  - title: Colors
-    theory_id: 7973
-  - title: Background
-    theory_id: 11670
   - title: RGB
     theory_id: 8819
   2:
