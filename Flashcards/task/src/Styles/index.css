@@ -14,8 +14,7 @@ body {
     flex-flow: column;
     height: 90vmin;
     justify-content: space-around;
-    margin: 20px;
-    padding-bottom: 5%;
+    padding-bottom: 3%;
     width: 90vmin;
 }
 
@@ -29,7 +28,7 @@ body {
 }
 
 .cards-container {
-    align-content: center;
+    align-content: space-around;
     background-color: transparent;
     border-radius: inherit;
     display: flex;
@@ -37,7 +36,8 @@ body {
     flex-flow: row;
     flex-wrap: wrap;
     height: 80vmin;
-    justify-content: center;
+    justify-content: space-around;
+    perspective: 2000px;
     text-align: center;
     width: 80vmin;
 }
@@ -47,18 +47,19 @@ body {
     border-radius: inherit;
     font-size: 1.8vmin;
     height: 30%;
-    margin: 1%;
     transition: transform 1.5s ease;
     transform-style: preserve-3d;
     width: 30%;
 }
 
-.card-item > * {
+.front-side, .back-side {
     backface-visibility: hidden;
     border-radius: inherit;
+    box-sizing: border-box;
     height: 100%;
     line-height: 1.5;
     position: absolute;
+    margin: 0;
     width: 100%;
 }
 
@@ -68,10 +69,11 @@ body {
 
 .back-side {
     background-color: #fd983f;
-    border: 2px solid #fd983f;
+    margin: auto;
     transform: rotateY(180deg);
 }
 
 .front-side {
     border: 2px solid #cae5fd;
+    margin: auto;
 }
