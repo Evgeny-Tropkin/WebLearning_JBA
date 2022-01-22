@@ -15,6 +15,7 @@ body {
     height: 90vmin;
     justify-content: space-around;
     margin: 20px;
+    padding-bottom: 5%;
     width: 90vmin;
 }
 
@@ -56,6 +57,7 @@ body {
     backface-visibility: hidden;
     border-radius: inherit;
     height: 100%;
+    line-height: 1.5;
     position: absolute;
     width: 100%;
 }
