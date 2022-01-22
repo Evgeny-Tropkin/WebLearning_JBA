@@ -323,5 +323,11 @@ files:
     }
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/10247#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: |-
+    Error: Failed: "Wrong answer in test #3
+
+    Each card should have suggested structure - there should be 4 divs for each card."
+  time: Fri, 21 Jan 2022 15:47:49 UTC
 record: -1
