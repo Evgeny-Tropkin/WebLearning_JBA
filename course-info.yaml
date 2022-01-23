@@ -1,12 +1,11 @@
 type: hyperskill
-title: Flashcards
+title: To-Do List
 language: English
-summary: If you are a beginner web developer, you need to know the basics of CSS and
-  HTML. This project is great for those who need somewhere to start. Your goal is
-  to create a stylized page with flashcards, each containing a question on one side
-  and the answer on the other. You can choose any subject you want for your flashcards!<br/><br/>Learn
-  more at <a href="https://hyperskill.org/projects/115?utm_source=ide&utm_medium=ide&utm_campaign=ide&utm_content=project-card">https://hyperskill.org/projects/115</a>
+summary: Have you ever had the feeling that you're missing something important? If
+  so, to-do lists can be of help. A clear outline of your daily tasks will help you
+  stay composed and mentally focused. In this project, you will create a simple to-do
+  list that can manage your tasks.<br/><br/>Learn more at <a href="https://hyperskill.org/projects/183?utm_source=ide&utm_medium=ide&utm_campaign=ide&utm_content=project-card">https://hyperskill.org/projects/183</a>
 programming_language: JavaScript
 content:
-- Flashcards
+- To-Do List
 mode: Study
