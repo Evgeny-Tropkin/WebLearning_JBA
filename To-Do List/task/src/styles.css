@@ -1,0 +1,44 @@
+.task-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.task {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 5px;
+    width: 100%;
+}
+
+.task-row:nth-child(2n) span {
+    background-color: darkgray;
+}
+
+.delete-button {
+    width: 100px;
+}
+
+#new-task {
+    display: flex;
+    justify-content: space-between;
+}
+
+#input-task {
+    width: 100%;
+    margin-right: 10px;
+}
+
+#add-task-button {
+    width: 100px;
+}
+
+#task-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+main {
+    width: 90%;
+    margin: auto;
+}
