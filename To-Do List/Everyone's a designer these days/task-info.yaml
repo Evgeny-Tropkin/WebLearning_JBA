@@ -106,7 +106,7 @@ files:
 - name: src/styles.css
   visible: true
   learner_created: true
-feedback_link: https://hyperskill.org/projects/183/stages/927/implement#comment
+feedback_link: https://hyperskill.org/learn/step/10245#comment
 status: Solved
 feedback:
   message: Congratulations!
