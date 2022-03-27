@@ -2,226 +2,146 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 // '..' since we're in the test/ subdirectory; learner is supposed to have src/index.html
 const pagePath = 'file://' + path.resolve(__dirname, '../src/index.html');
-
 const hs = require('hs-test-web');
-
 const sleep = (ms) => new Promise(res => setTimeout(res, ms));
 
 async function stageTest() {
+
     const browser = await puppeteer.launch({
         headless: false,
         defaultViewport: null,
-        args: ['--start-maximized']
+        args: ['--start-maximized', '--disable-infobar'],
+        ignoreDefaultArgs: ['--enable-automation']
     });
 
     const page = await browser.newPage();
     await page.goto(pagePath);
 
-    page.on('console', msg => console.log(msg.text()));
-
     await sleep(1000);
 
     let result = await hs.testPage(page,
-        //test1
-        /*
-        1)Checks existence of h1 element on the page.
-        2)Checks that there is text inside of h1
-        3)Checks that font !== serif | Times New Roman
-        * */
+        // Test #1 - Check title
         () => {
-            let h1 = document.body.getElementsByTagName("h1");
+            if (document.title !== 'To-Do List') {
+                return hs.wrong("The title of the page should be 'To-Do List'")
+            }
+            return hs.correct();
+        },
 
-            if (h1.length === 0) return hs.wrong("There should be h1 element on the page.");
-            if (h1.length > 1) return hs.wrong("There should be only one h1 element on the page.");
-            if (!h1[0].innerText) return hs.wrong("The h1 element should contain text.");
+        // Test #2 - Check elements
+        () => {
+            const inputField = document.getElementById("input-task")
+            if (inputField === null || inputField.tagName !== 'INPUT')
+                return hs.wrong("Can't find input field with id '#input-task'")
 
-            let font = window.getComputedStyle(h1[0]).fontFamily;
-            if (font === '"serif"' || font === '"Times New Roman"') return hs.wrong("The text inside the h1 element should have a font different from 'serif' and 'Times New Roman'.");
+            const addButton = document.getElementById("add-task-button")
+            if (addButton === null || addButton.tagName !== 'BUTTON')
+                return hs.wrong("Can't find button with id '#add-task-button'")
+
+            this.taskList = document.getElementById("task-list")
+            if (this.taskList === null || this.taskList.tagName !== 'UL')
+                return hs.wrong("Can't find <ul> tag with id '#task-list'")
+
+            return hs.correct();
+        },
+
+        // Test #3 - Check each task in task list
+        () => {
+
+            const tasks = this.taskList.getElementsByTagName("li")
+            if (tasks.length !== 3)
+                return hs.wrong("Inside the <ul> tag should be 3 <li> elements!")
+
+            for (let task of tasks) {
+                const checkbox = task.querySelector("input[type=checkbox]")
+                if (checkbox === null)
+                    return hs.wrong("Inside each <li> tag should one <input> tag with 'checkbox' type")
+
+                const taskName = task.querySelector("span.task")
+                if (taskName === null)
+                    return hs.wrong("Inside each <li> tag should one <span> tag with 'task' class")
+
+                const deleteButton = task.querySelector("button.delete-btn")
+                if (deleteButton === null)
+                    return hs.wrong("Inside each <li> tag should one <button> tag with 'delete-btn' class")
+            }
+
+            return hs.correct();
+        },
+
+        // Test #4 - Test adding new task
+        () => {
+
+            const inputField = document.getElementById("input-task")
+            if (inputField.tagName !== 'INPUT')
+                return hs.wrong("Can't find input field with id '#input-task'")
+
+            inputField.value = "New task for the test purpose"
+
+            const addButton = document.getElementById("add-task-button")
+            if (addButton.tagName !== 'BUTTON')
+                return hs.wrong("Can't find button with id '#add-task-button'")
+
+            addButton.click()
+
+            const tasks = this.taskList.getElementsByTagName("li")
+            if (tasks.length !== 4)
+                return hs.wrong("After adding a new task to the To-Do list, there should be 4 <li> tags inside the <ul> list")
+
+            for (let task of tasks) {
+
+                const taskName = task.querySelector("span.task")
+                if (taskName === null)
+                    return hs.wrong("Inside each <li> tag should one <spane> tag with 'task' class")
+
+                if (taskName.textContent === "New task for the test purpose") {
+                    return hs.correct()
+                }
+            }
+
+            return hs.wrong("Can't find task with name 'New task for the test purpose'.\n" +
+                "The task name should be placed in <span> tag with class 'task'!")
+        },
+
+        // Test #5 - Deleting task
+        () => {
+
+            let tasks = this.taskList.getElementsByTagName("li")
+
+            for (let task of tasks) {
+                const taskName = task.querySelector("span.task")
+                if (taskName === null)
+                    return hs.wrong("Inside each <li> tag should one <spane> tag with 'task' class")
+
+                if (taskName.textContent === "New task for the test purpose") {
+                    const deleteButton = task.querySelector("button.delete-btn")
+                    if (deleteButton === null)
+                        return hs.wrong("Inside each <li> tag should one <button> tag with 'delete-btn' class")
+                    deleteButton.click()
+                    break
+                }
+            }
+
+            tasks = this.taskList.getElementsByTagName("li")
+
+            for (let task of tasks) {
+                const taskName = task.querySelector("span.task")
+                if (taskName === null)
+                    return hs.wrong("Inside each <li> tag should one <spane> tag with 'task' class")
+
+                if (taskName.textContent === "New task for the test purpose") {
+                    return hs.wrong("After deleting a task with name 'New task for the test purpose' it is still in the task list!")
+                }
+            }
 
             return hs.correct()
-        },
-        //#test2
-        /*
-        Two correct cases:
-        1.
-        1) Finds element with 9 divs
-        2) Checks if it has CSS property display: flex/ grid
-        2.
-        1) Finds element with 3 divs, each of 3 divs contains 3 divs inside
-        2) For each of 3 divs checks, that there are properties display: flex flex-direction: row
-         */
-        () => {
-            let divs = document.body.getElementsByTagName("div");
-            let blocksCounter = 0;
-
-            for (let div of divs) {
-                if (div.children.length === 9) {
-                    const display = window.getComputedStyle(div).display;
-                    if (display && (display.toLowerCase() === 'flex' || display.toLowerCase() === 'grid')) {
-                        return hs.correct();
-                    } else {
-                        return hs.wrong("The CSS property display: flex or display: grid should be set to the element with 9 div elements inside.");
-                    }
-                } else if (div.children && div.children.length === 3 &&
-                    div.children[0].children && div.children[0].children.length === 3) {
-                    for (let divBlockOfThree of div.children) {
-                        const display = window.getComputedStyle(divBlockOfThree).display;
-                        const flexDirection = window.getComputedStyle(divBlockOfThree).flexDirection;
-                        if (display && display.toLowerCase() === 'flex' &&
-                            flexDirection && flexDirection.toLowerCase() === 'row') {
-                            blocksCounter++;
-                        } else {
-                            return hs.wrong("The CSS property display: flex and flex-direction: row should be set to the element with 3 div elements inside.");
-                        }
-                    }
-                }
-            }
-
-            return blocksCounter === 3 ? hs.correct() : hs.wrong("There should be an element with 9 div elements inside.");
-        },
-        //#test3
-        /*
-        2 correct cases
-        *In both cases test tries to find property font on different levels
-        1.
-        1) Finds element with 9 divs
-        2) Checks if it(or each of cards) has CSS property font !== serif | Times New Roman
-        2.
-        1) Finds element with 3 divs, each of 3 divs contains 3 divs inside
-        2) Checks if it(or each of its children or each of cards) has CSS property font !== serif | Times New Roman
-        */
-        () => {
-            let divs = document.body.getElementsByTagName("div");
-            let k = 0;
-            for (let div of divs) {
-                if (div.children.length === 9) {
-                    const font = window.getComputedStyle(div).font
-                    if (font !== '"serif"' || font !== '"Times New Roman"') {
-                        return hs.correct();
-                    }
-                    for (let card of Array.from(div.children)) {
-                        if (card.children[0] && card.children[0].tagName.toLowerCase() === 'p') {
-                            let font = window.getComputedStyle(div.children[0]).fontFamily;
-                            if (font === '"serif"' || font === '"Times New Roman"') {
-                                return hs.wrong("Text on cards should have font different from 'serif' and 'Times New Roman'");
-                            } else {
-                                k++;
-                            }
-                        } else {
-                            return hs.wrong("The structure should be the same as given in the step and all text on the cards should be in 'p' element");
-                        }
-                    }
-                } else if (div.children && div.children.length === 3 &&
-                    div.children[0].children && div.children[0].children.length === 3) {
-                    const font = window.getComputedStyle(div).font;
-                    if (font !== '"serif"' || font !== '"Times New Roman"') {
-                        return hs.correct();
-                    }
-                    for (let divBlockOfThree of div.children) {
-                        const font = window.getComputedStyle(divBlockOfThree).font;
-                        if (font !== '"serif"' || font !== '"Times New Roman"') {
-                            return hs.correct();
-                        }
-                        for (let card of divBlockOfThree.children) {
-                            const font = window.getComputedStyle(card).font;
-                            if (font !== '"serif"' || font !== '"Times New Roman"') {
-                                k++;
-                            } else {
-                                return hs.wrong("Text on cards should have font different from 'serif' and 'Times New Roman'");
-                            }
-                        }
-
-                    }
-                }
-            }
-
-
-            return k !== 9 ? hs.wrong("9 div elements should contain p element.") : hs.correct();
-        },
-        //#test4
-        /*
-        1)Checks that cards form a table 3x3 (for 2 cases)
-         */
-        () => {
-            let divs = document.body.getElementsByTagName("div");
-            let cardsH = [];
-            let cardsL = [];
-            for (let div of divs) {
-                if (div.children && div.children.length === 9) {
-                    for (let cardDiv of div.children) {
-                        let styles = window.getComputedStyle(cardDiv);
-                        if (styles.width === styles.height) {
-                            let left = cardDiv.getBoundingClientRect().left;
-                            let top = cardDiv.getBoundingClientRect().top;
-                            if (!cardsH.includes(top)) {
-                                cardsH.push(top);
-                            }
-                            if (!cardsL.includes(left)) {
-                                cardsL.push(left);
-                            }
-
-                            if (!styles.backgroundColor && !styles.backgroundImage)
-                                return hs.wrong("Each card should have a background.")
-                        }
-                    }
-                } else if (div.children && div.children.length === 3 &&
-                    div.children[0].children && div.children[0].children.length === 3) {
-                    for (let divBlockOfThree of div.children) {
-                        for (let cardDiv of divBlockOfThree.children) {
-                            let styles = window.getComputedStyle(cardDiv);
-                            if (styles.width === styles.height) {
-                                let left = cardDiv.getBoundingClientRect().left;
-                                let top = cardDiv.getBoundingClientRect().top;
-                                if (!cardsH.includes(top)) {
-                                    cardsH.push(top);
-                                }
-                                if (!cardsL.includes(left)) {
-                                    cardsL.push(left);
-                                }
-
-                                if (!styles.backgroundColor && !styles.backgroundImage)
-                                    return hs.wrong("Each card should have a background.")
-                            }
-                        }
-                    }
-                }
-            }
-
-            return cardsH.length === 3 && cardsL.length === 3 ? hs.correct() :
-                hs.wrong("The cards should form a table 3x3 and each of them should have equal width and height.")
-        },
-        //#test5
-        /*
-        1)Checks the background of the element, which contains h1 and div with 9 divs
-         */
-        () => {
-            let divs = document.body.getElementsByTagName("div");
-            for (let div of divs) {
-                let childrenElements = Array.from(div.children)
-                if (childrenElements.find(el => el.tagName.toLowerCase() === "h1")) {
-                    if (window.getComputedStyle(div).backgroundColor !== 'rgba(0, 0, 0, 0)' ||
-                        window.getComputedStyle(div).backgroundImage !== 'none') {
-
-                        return hs.correct();
-                    }
-                }
-            }
-
-            let bodyStyles = window.getComputedStyle(document.body);
-            if (bodyStyles.backgroundColor !== 'rgba(0, 0, 0, 0)' ||
-                bodyStyles.backgroundImage !== 'none') {
-
-                return hs.correct();
-            }
-
-            return hs.wrong("The element that contains header and cards should have a background.\n" +
-                "Please, make sure you set a background as CSS property.");
         }
-    )
+    );
 
     await browser.close();
     return result;
 }
+
 
 jest.setTimeout(30000);
 test("Test stage", async () => {

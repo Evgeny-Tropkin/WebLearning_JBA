@@ -7,12 +7,115 @@ files:
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Document</title>
+        <title>To-Do List</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-
+    <main>
+        <h1>To-Do List</h1>
+        <div id="new-task">
+            <input type="text" id="input-task" placeholder="Enter a task">
+            <button id="add-task-button">Add Task</button>
+        </div>
+        <hr>
+        <ul id="task-list">
+            <li class="task-row">
+                <input type="checkbox">
+                <span class="task">Learn HTML</span>
+                <button class="delete-btn">Delete</button>
+            </li>
+            <li class="task-row">
+                <input type="checkbox">
+                <span class="task">Learn CSS</span>
+                <button class="delete-btn">Delete</button>
+            </li>
+            <li class="task-row">
+                <input type="checkbox">
+                <span class="task">Learn JS</span>
+                <button class="delete-btn">Delete</button>
+            </li>
+        </ul>
+    </main>
+    <script src="script.js"></script>
     </body>
     </html>
+  learner_created: false
+- name: src/styles.css
+  visible: true
+  text: |-
+    .task-row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .task {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-left: 5px;
+        width: 100%;
+    }
+
+    .task-row:nth-child(2n) span {
+        background-color: darkgray;
+    }
+
+    .delete-btn {
+        width: 100px;
+    }
+
+    #new-task {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #input-task {
+        width: 100%;
+        margin-right: 10px;
+    }
+
+    #add-task-button {
+        width: 100px;
+    }
+
+    #task-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    main {
+        width: 90%;
+        margin: auto;
+    }
+  learner_created: false
+- name: src/script.js
+  visible: true
+  text: |
+    function addNewTask () {
+        let taskInputField = document.getElementById("input-task");
+        let taskText = taskInputField.value;
+        if (taskText !== ''){
+            let tasks = document.getElementById("task-list")
+            let newTask = document.createElement("li");
+            let taskCheck = document.createElement("input");
+            let taskDescription = document.createElement("span");
+            let taskDelete = document.createElement("button");
+
+            newTask.className = "task-row";
+            taskCheck.type = "checkbox";
+            taskDescription.className = "task";
+            taskDescription.innerHTML= taskText;
+            taskDelete.className = "delete-btn";
+            taskDelete.innerHTML = "Delete";
+
+            newTask.appendChild(taskCheck);
+            newTask.appendChild(taskDescription);
+            newTask.appendChild(taskDelete);
+            tasks.appendChild(newTask);
+        }
+    }
+
+    document.getElementById("add-task-button").addEventListener("click", addNewTask);
   learner_created: false
 - name: test/test.js
   visible: false
