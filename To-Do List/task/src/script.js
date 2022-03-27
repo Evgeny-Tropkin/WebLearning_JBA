@@ -19,6 +19,7 @@ function addNewTask () {
         newTask.appendChild(taskDescription);
         newTask.appendChild(taskDelete);
         tasks.appendChild(newTask);
+        taskInputField.value = "";
     }
 }
 
