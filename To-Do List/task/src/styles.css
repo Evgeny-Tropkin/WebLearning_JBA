@@ -11,6 +11,11 @@
     width: 100%;
 }
 
+.checked {
+    color: lightgray;
+    text-decoration: line-through;
+}
+
 .task-row:nth-child(2n) span {
     background-color: darkgray;
 }

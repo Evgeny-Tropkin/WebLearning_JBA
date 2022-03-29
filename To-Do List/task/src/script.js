@@ -10,6 +10,7 @@ function addNewTask () {
 
         newTask.className = "task-row";
         taskCheck.type = "checkbox";
+        taskCheck.addEventListener("click", checkTask)
         taskDescription.className = "task";
         taskDescription.innerHTML= taskText;
         taskDelete.className = "delete-btn";
@@ -29,6 +30,12 @@ function removeTask() {
     let grandParent = parent.parentNode;
     grandParent.removeChild(parent)
     this.removeEventListener();
+}
+
+function checkTask(){
+    let parent = this.parentNode;
+    let description = parent.querySelector(".task");
+    description.classList.toggle("checked");
 }
 
 document.getElementById("add-task-button").addEventListener("click", addNewTask);
