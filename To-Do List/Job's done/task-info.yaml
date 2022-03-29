@@ -312,5 +312,12 @@ files:
     );
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/13196#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: |-
+    Error: Failed: "Wrong answer in test #6
+
+    If checkbox is checked the task name should be crossed out.
+    The span tag with task name should have 'text-decoration: line-through' style"
+  time: Tue, 29 Mar 2022 04:34:51 UTC
 record: -1
