@@ -39,3 +39,11 @@ function checkTask(){
 }
 
 document.getElementById("add-task-button").addEventListener("click", addNewTask);
+
+let existingTasks = document.querySelectorAll(".task-row");
+existingTasks.forEach(
+    function (task){
+        let checkBox = task.querySelector("input");
+        checkBox.addEventListener("click", checkTask);
+    }
+);
