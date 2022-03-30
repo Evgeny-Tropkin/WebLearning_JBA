@@ -1,4 +1,4 @@
-function addNewTask () {
+function addNewTask (task) {
     let taskInputField = document.getElementById("input-task");
     let taskText = taskInputField.value;
     if (taskText !== ''){
@@ -38,4 +38,16 @@ function checkTask(){
     description.classList.toggle("checked");
 }
 
+function readLocalStorage (){
+    let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+    if (taskList.length > 0){
+        taskList.forEach(
+            function (task){
+                addNewTask(task);
+            }
+        )
+    }
+}
+
+readLocalStorage();
 document.getElementById("add-task-button").addEventListener("click", addNewTask);
