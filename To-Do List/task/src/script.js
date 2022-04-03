@@ -1,6 +1,7 @@
-function addNewTask (task) {
+function addNewTask(task) {
     let taskInputField = document.getElementById("input-task");
-    let taskText = taskInputField.value;
+    let taskText = getTaskDescription(taskInputField, task);
+
     if (taskText !== ''){
         let tasks = document.getElementById("task-list")
         let newTask = document.createElement("li");
@@ -47,6 +48,16 @@ function readLocalStorage (){
             }
         )
     }
+}
+
+function getTaskDescription(taskInputField, task){
+    if (task !== null){
+        return task["description"];
+    }
+    else{
+       return taskInputField;
+    }
+
 }
 
 readLocalStorage();
