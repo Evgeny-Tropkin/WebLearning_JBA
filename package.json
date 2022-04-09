@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "jest": "^24.9.0",
+    "mocha": "^9.2.0",
     "hs-test-web": "https://github.com/hyperskill/hs-test-web/archive/release.tar.gz",
     "puppeteer": "^13.1.3"
   },
