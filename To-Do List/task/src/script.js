@@ -53,6 +53,9 @@ function getTaskDescription(taskInputField, task){
 
 }
 
+function generateKey() {
+    return "task_" + Date.now();
+}
 
 //region localStorage wrappers
 function errorMessage(exceptionItem, alertMessage){
