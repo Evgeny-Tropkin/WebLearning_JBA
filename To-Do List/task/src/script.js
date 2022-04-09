@@ -60,5 +60,51 @@ function getTaskDescription(taskInputField, task){
 
 }
 
+
+//region localStorage wrappers
+function errorMessage(exceptionItem, alertMessage){
+    alert(alertMessage);
+    console.log(exceptionItem);
+}
+
+function getItem(key) {
+    try {
+        return window.localStorage.getItem(key);
+    }
+    catch (e) {
+        errorMessage(e, "Ошибка чтения из хранилища localstorage. См.log");
+    }
+}
+
+function setItem(key, value) {
+    try {
+        return window.localStorage.setItem(key, value)
+    }
+    catch (e){
+        errorMessage(e, "Ошибка записи в хранилище localstorage. См.log");
+    }
+}
+
+function getJSON(key) {
+    try {
+        const json = getItem(key);
+        return JSON.parse(json);
+    }
+    catch (e) {
+        errorMessage(e, "Ошибка чтения JSON. См.log");
+    }
+}
+
+function setJSON(key, value) {
+    try {
+        const json = JSON.stringify(value);
+        setItem(key, json)
+    }
+    catch (e) {
+        errorMessage(e, "Ошибка записи JSON. См.log");
+    }
+}
+//endregion
+
 readLocalStorage();
 document.getElementById("add-task-button").addEventListener("click", addNewTask);
