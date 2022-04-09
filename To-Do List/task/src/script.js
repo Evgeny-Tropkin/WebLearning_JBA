@@ -29,6 +29,8 @@ function addNewTask(task) {
         //endregion
 
         //region adding to the localstorage
+        let taskObj = {"description": taskText, "isCompleted": false};
+        setJSON(generateKey(),taskObj);
         //endregion
 
         //region adding new task to the screen
