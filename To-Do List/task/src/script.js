@@ -40,14 +40,7 @@ function checkTask(){
 }
 
 function readLocalStorage (){
-    let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
-    if (taskList.length > 0){
-        taskList.forEach(
-            function (task){
-                addNewTask(task);
-            }
-        )
-    }
+
 }
 
 function getTaskDescription(taskInputField, task){
