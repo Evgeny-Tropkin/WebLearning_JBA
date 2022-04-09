@@ -3,12 +3,15 @@ function addNewTask(task) {
     let taskText = getTaskDescription(taskInputField, task);
 
     if (taskText !== ''){
+        //region variables
         let tasks = document.getElementById("task-list")
         let newTask = document.createElement("li");
         let taskCheck = document.createElement("input");
         let taskDescription = document.createElement("span");
         let taskDelete = document.createElement("button");
+        //endregion
 
+        //region new task components
         newTask.className = "task-row";
         taskCheck.type = "checkbox";
         taskCheck.addEventListener("click", checkTask)
@@ -17,12 +20,21 @@ function addNewTask(task) {
         taskDelete.className = "delete-btn";
         taskDelete.innerHTML = "Delete";
         taskDelete.addEventListener("click", removeTask);
+        //endregion
 
+        //region new task compilation
         newTask.appendChild(taskCheck);
         newTask.appendChild(taskDescription);
         newTask.appendChild(taskDelete);
+        //endregion
+
+        //region adding to the localstorage
+        //endregion
+
+        //region adding new task to the screen
         tasks.appendChild(newTask);
         taskInputField.value = "";
+        //endregion
     }
 }
 
