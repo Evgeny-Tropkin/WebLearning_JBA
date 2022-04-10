@@ -123,5 +123,16 @@ function readLocalStorage (){
     return tasks;
 }
 
+function initializeTaskList() {
+    let tasks = readLocalStorage();
+    let q = tasks.length;
+
+    if (q !== 0) {
+        for(let taskIndex = 0; taskIndex < q; taskIndex++) {
+            addNewTask(tasks[taskIndex]);
+        }
+    }
+}
+
 document.getElementById("add-task-button").addEventListener("click", addNewTask);
 initializeTaskList();
