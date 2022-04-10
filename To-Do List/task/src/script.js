@@ -53,10 +53,6 @@ function checkTask(){
     description.classList.toggle("checked");
 }
 
-function readLocalStorage (){
-
-}
-
 function getTaskDescription(taskInputField, task){
     if (task !== null){
         return task["description"];
@@ -116,5 +112,16 @@ function setJSON(key, value) {
 }
 //endregion
 
-readLocalStorage();
+function readLocalStorage (){
+    let tasks = [];
+    for (let keyIndex=0; keyIndex < localStorage.length; key++){
+        let key = window.localStorage.key(keyIndex);
+        if (key.startsWith("task_")){
+           tasks.push(getJSON(key));
+        }
+    }
+    return tasks;
+}
+
 document.getElementById("add-task-button").addEventListener("click", addNewTask);
+initializeTaskList();
