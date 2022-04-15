@@ -7,10 +7,12 @@ function prepareNewTask(taskText, isComplete) {
         let taskCheck = document.createElement("input");
         let taskDescription = document.createElement("span");
         let taskDelete = document.createElement("button");
+        let taskId = generateKey();
         //endregion
 
         //region new task components
         newTask.className = "task-row";
+        newTask.id = taskId;
         taskCheck.type = "checkbox";
         taskCheck.checked = isComplete;
         taskCheck.addEventListener("click", checkTask)
@@ -28,7 +30,7 @@ function prepareNewTask(taskText, isComplete) {
         //endregion
 
         //region prepare for adding to the localstorage
-        let taskObj = {"description": taskText, "isCompleted": false};
+        let taskObj = {"id": taskId, "description": taskText, "isCompleted": false};
         //endregion
 
         //region adding new task to the screen
@@ -123,8 +125,8 @@ function addTaskFromLocalStorage(task) {
     prepareNewTask(taskDescription, isCompleted);
 }
 
-function addNewTaskToLocalStorage(taskObj) {
-        setJSON(generateKey(),taskObj);
+function addNewTaskToLocalStorage(key, taskObj) {
+        setJSON(key, taskObj);
 }
 
 function initializeTaskList() {
@@ -141,7 +143,9 @@ function initializeTaskList() {
 function addNewTask() {
     let taskInputField = document.getElementById("input-task");
     let task = prepareNewTask(taskInputField.value, false);
-    addNewTaskToLocalStorage(task);
+    let key = task.id;
+
+    addNewTaskToLocalStorage(key, task);
     taskInputField.value = "";
 }
 
