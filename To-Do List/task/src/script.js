@@ -1,6 +1,4 @@
-function addNewTask(task) {
-    let taskInputField = document.getElementById("input-task");
-    let taskText = getTaskDescription(taskInputField, task);
+function prepareNewTask(taskText, isComplete) {
 
     if (taskText !== ''){
         //region variables
@@ -14,6 +12,7 @@ function addNewTask(task) {
         //region new task components
         newTask.className = "task-row";
         taskCheck.type = "checkbox";
+        taskCheck.checked = isComplete;
         taskCheck.addEventListener("click", checkTask)
         taskDescription.className = "task";
         taskDescription.innerHTML= taskText;
@@ -28,15 +27,15 @@ function addNewTask(task) {
         newTask.appendChild(taskDelete);
         //endregion
 
-        //region adding to the localstorage
+        //region prepare for adding to the localstorage
         let taskObj = {"description": taskText, "isCompleted": false};
-        setJSON(generateKey(),taskObj);
         //endregion
 
         //region adding new task to the screen
         tasks.appendChild(newTask);
-        taskInputField.value = "";
         //endregion
+
+        return taskObj;
     }
 }
 
@@ -51,16 +50,6 @@ function checkTask(){
     let parent = this.parentNode;
     let description = parent.querySelector(".task");
     description.classList.toggle("checked");
-}
-
-function getTaskDescription(taskInputField, task){
-    if (task !== null){
-        return task["description"];
-    }
-    else{
-       return taskInputField;
-    }
-
 }
 
 function generateKey() {
@@ -113,14 +102,29 @@ function setJSON(key, value) {
 //endregion
 
 function readLocalStorage (){
+    console.log("Start reading from localStorage");
     let tasks = [];
-    for (let keyIndex=0; keyIndex < localStorage.length; key++){
+    for (let keyIndex=0; keyIndex < localStorage.length; keyIndex++){
         let key = window.localStorage.key(keyIndex);
         if (key.startsWith("task_")){
            tasks.push(getJSON(key));
         }
     }
+    if (tasks.length === 0) {
+        alert("В localStorage отсутствуют сохраненные задачи!");
+    }
     return tasks;
+    console.log("Reading from localStorage is completed");
+}
+
+function addTaskFromLocalStorage(task) {
+    let taskDescription = task.description;
+    let isCompleted = task.isCompleted;
+    prepareNewTask(taskDescription, isCompleted);
+}
+
+function addNewTaskToLocalStorage(taskObj) {
+        setJSON(generateKey(),taskObj);
 }
 
 function initializeTaskList() {
@@ -129,9 +133,16 @@ function initializeTaskList() {
 
     if (q !== 0) {
         for(let taskIndex = 0; taskIndex < q; taskIndex++) {
-            addNewTask(tasks[taskIndex]);
+            addTaskFromLocalStorage(tasks[taskIndex]);
         }
     }
+}
+
+function addNewTask() {
+    let taskInputField = document.getElementById("input-task");
+    let task = prepareNewTask(taskInputField.value, false);
+    addNewTaskToLocalStorage(task);
+    taskInputField.value = "";
 }
 
 document.getElementById("add-task-button").addEventListener("click", addNewTask);
