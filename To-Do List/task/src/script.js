@@ -30,7 +30,7 @@ function prepareNewTask(taskId, taskText, isComplete) {
         //endregion
 
         //region prepare for adding to the localstorage
-        let taskObj = {"id": taskId, "description": taskText, "isCompleted": false};
+        let taskObj = {"id": iD, "description": taskText, "isCompleted": false};
         //endregion
 
         //region adding new task to the screen
@@ -158,7 +158,7 @@ function initializeTaskList() {
 
 function addNewTask() {
     let taskInputField = document.getElementById("input-task");
-    let task = prepareNewTask(taskInputField.value, false);
+    let task = prepareNewTask(null, taskInputField.value, false);
     let key = task.id;
 
     addNewTaskToLocalStorage(key, task);
