@@ -1,3 +1,4 @@
+//region frontend works
 function prepareNewTask(taskId, taskText, isComplete) {
 
     if (taskText !== ''){
@@ -41,6 +42,15 @@ function prepareNewTask(taskId, taskText, isComplete) {
     }
 }
 
+function addNewTask() {
+    let taskInputField = document.getElementById("input-task");
+    let task = prepareNewTask(null, taskInputField.value, false);
+    let key = task.id;
+
+    addNewTaskToLocalStorage(key, task);
+    taskInputField.value = "";
+}
+
 function removeTask() {
     let parent = this.parentNode;
     let grandParent = parent.parentNode;
@@ -60,6 +70,9 @@ function checkTask(){
 function generateKey() {
     return "task_" + Date.now();
 }
+//endregion
+
+//region localStorage works
 
 //region localStorage wrappers
 function errorMessage(exceptionItem, alertMessage){
@@ -155,15 +168,8 @@ function initializeTaskList() {
         }
     }
 }
+//endregion
 
-function addNewTask() {
-    let taskInputField = document.getElementById("input-task");
-    let task = prepareNewTask(null, taskInputField.value, false);
-    let key = task.id;
-
-    addNewTaskToLocalStorage(key, task);
-    taskInputField.value = "";
-}
-
+//main script
 document.getElementById("add-task-button").addEventListener("click", addNewTask);
 initializeTaskList();
