@@ -1,4 +1,4 @@
-function prepareNewTask(taskText, isComplete) {
+function prepareNewTask(taskId, taskText, isComplete) {
 
     if (taskText !== ''){
         //region variables
@@ -7,12 +7,12 @@ function prepareNewTask(taskText, isComplete) {
         let taskCheck = document.createElement("input");
         let taskDescription = document.createElement("span");
         let taskDelete = document.createElement("button");
-        let taskId = generateKey();
+        let iD = taskId? taskId: generateKey();
         //endregion
 
         //region new task components
         newTask.className = "task-row";
-        newTask.id = taskId;
+        newTask.id = iD;
         taskCheck.type = "checkbox";
         taskCheck.checked = isComplete;
         taskCheck.addEventListener("click", checkTask)
@@ -44,8 +44,11 @@ function prepareNewTask(taskText, isComplete) {
 function removeTask() {
     let parent = this.parentNode;
     let grandParent = parent.parentNode;
+    let taskKey = parent.id;
+    console.log(taskKey);
     grandParent.removeChild(parent)
-    this.removeEventListener();
+    //this.removeEventListener("click", this);
+    removeTaskFromLocalStorage(taskKey);
 }
 
 function checkTask(){
@@ -82,6 +85,16 @@ function setItem(key, value) {
     }
 }
 
+function deleteItem(key) {
+    try {
+        console.log(`Remove ${key} from localStorage`)
+        return window.localStorage.removeItem(key);
+    }
+    catch (e){
+        errorMessage(e, "Ошибка удаления информации из localstorage. См.log");
+    }
+}
+
 function getJSON(key) {
     try {
         const json = getItem(key);
@@ -115,18 +128,21 @@ function readLocalStorage (){
     if (tasks.length === 0) {
         alert("В localStorage отсутствуют сохраненные задачи!");
     }
-    return tasks;
     console.log("Reading from localStorage is completed");
+    return tasks;
 }
 
 function addTaskFromLocalStorage(task) {
-    let taskDescription = task.description;
-    let isCompleted = task.isCompleted;
-    prepareNewTask(taskDescription, isCompleted);
+    prepareNewTask(task.id, task.description, task.isCompleted);
 }
 
 function addNewTaskToLocalStorage(key, taskObj) {
         setJSON(key, taskObj);
+}
+
+function removeTaskFromLocalStorage(taskKey) {
+    deleteItem(taskKey);
+    console.log(`Задача ${taskKey} удалена из localStorage`);
 }
 
 function initializeTaskList() {
