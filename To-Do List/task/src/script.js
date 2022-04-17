@@ -22,6 +22,9 @@ function prepareNewTask(taskId, taskText, isComplete) {
         taskDelete.className = "delete-btn";
         taskDelete.innerHTML = "Delete";
         taskDelete.addEventListener("click", removeTask);
+        if (isComplete) {
+            taskDescription.classList.toggle("checked");
+        }
         //endregion
 
         //region new task compilation
@@ -65,6 +68,7 @@ function checkTask(){
     let parent = this.parentNode;
     let description = parent.querySelector(".task");
     description.classList.toggle("checked");
+    checkTaskInLocalStorage(parent.id);
 }
 
 function generateKey() {
@@ -156,6 +160,12 @@ function addNewTaskToLocalStorage(key, taskObj) {
 function removeTaskFromLocalStorage(taskKey) {
     deleteItem(taskKey);
     console.log(`Задача ${taskKey} удалена из localStorage`);
+}
+
+function checkTaskInLocalStorage(key) {
+    let task = getJSON(key);
+    task.isCompleted = !task.isCompleted;
+    setJSON(key, task)
 }
 
 function initializeTaskList() {
