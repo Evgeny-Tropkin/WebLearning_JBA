@@ -60,6 +60,7 @@ function removeTask() {
     let taskKey = parent.id;
     console.log(taskKey);
     grandParent.removeChild(parent)
+    // TODO: figure out the eventListener disposing
     //this.removeEventListener("click", this);
     removeTaskFromLocalStorage(taskKey);
 }
@@ -134,6 +135,7 @@ function setJSON(key, value) {
 //endregion
 
 function readLocalStorage (){
+    //TODO:  reverse the order of reading tasks from localStorage so that the user sees the task queue, not the stack
     console.log("Start reading from localStorage");
     let tasks = [];
     for (let keyIndex=0; keyIndex < localStorage.length; keyIndex++){
