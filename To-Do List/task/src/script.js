@@ -72,7 +72,7 @@ function checkTask(){
 }
 
 function generateKey() {
-    return "task_" + Date.now();
+    return taskClassNameMain + Date.now();
 }
 //endregion
 
@@ -138,7 +138,7 @@ function readLocalStorage (){
     let tasks = [];
     for (let keyIndex=0; keyIndex < localStorage.length; keyIndex++){
         let key = window.localStorage.key(keyIndex);
-        if (key.startsWith("task_")){
+        if (key.startsWith(taskClassNameMain)){
            tasks.push(getJSON(key));
         }
     }
