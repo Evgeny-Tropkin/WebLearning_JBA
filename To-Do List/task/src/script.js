@@ -17,13 +17,13 @@ function prepareNewTask(taskId, taskText, isComplete) {
         taskCheck.type = "checkbox";
         taskCheck.checked = isComplete;
         taskCheck.addEventListener("click", checkTask)
-        taskDescription.className = "task";
+        taskDescription.className = taskClassNameMain;
         taskDescription.innerHTML= taskText;
         taskDelete.className = "delete-btn";
         taskDelete.innerHTML = "Delete";
         taskDelete.addEventListener("click", removeTask);
         if (isComplete) {
-            taskDescription.classList.toggle("checked");
+            taskDescription.classList.toggle(taskClassNameIsComplete);
         }
         //endregion
 
@@ -67,7 +67,7 @@ function removeTask() {
 function checkTask(){
     let parent = this.parentNode;
     let description = parent.querySelector(".task");
-    description.classList.toggle("checked");
+    description.classList.toggle(taskClassNameIsComplete);
     checkTaskInLocalStorage(parent.id);
 }
 
@@ -181,5 +181,10 @@ function initializeTaskList() {
 //endregion
 
 //main script
+ //region class names for task (see also styles.css/class names for task(region))
+    let taskClassNameMain = "task";
+    let taskClassNameIsComplete = "checked";
+ //endregion
+
 document.getElementById("add-task-button").addEventListener("click", addNewTask);
 initializeTaskList();

@@ -4,6 +4,7 @@
     margin-top: 10px;
 }
 
+/*region class names for task (synchronize with class names in script.js/mainScript/variables)*/
 .task {
     margin-left: 10px;
     margin-right: 10px;
@@ -15,6 +16,7 @@
     color: lightgray;
     text-decoration: line-through;
 }
+/*endregion*/
 
 .task-row:nth-child(2n) span {
     background-color: darkgray;
