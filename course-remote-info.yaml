@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/531589/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Sun, 17 Apr 2022 11:21:46 UTC
+update_date: Sat, 30 Jul 2022 20:22:50 UTC
 stages:
 - id: 927
   step: 13194
@@ -23,12 +23,10 @@ topics:
     theory_id: 5544
   - title: Hexadecimal numbers
     theory_id: 8788
-  - title: Introduction to UI/UX
-    theory_id: 14603
-  - title: Layout grids
-    theory_id: 14922
   - title: Interface elements
     theory_id: 15253
+  - title: Fonts
+    theory_id: 15045
   - title: Colors
     theory_id: 14914
   - title: World Wide Web
@@ -39,7 +37,7 @@ topics:
     theory_id: 6434
   - title: HTTP URL
     theory_id: 6740
-  - title: Tags and attributes
+  - title: Tags and Attributes
     theory_id: 7536
   - title: HTML page structure
     theory_id: 6491
@@ -47,7 +45,7 @@ topics:
     theory_id: 7502
   - title: Block-level elements
     theory_id: 7271
-  - title: Inline Elements
+  - title: Inline elements
     theory_id: 7518
   - title: What is CSS
     theory_id: 7678
@@ -69,32 +67,42 @@ topics:
     theory_id: 12705
   - title: HTML attributes id and class
     theory_id: 7527
-  - title: Margin and padding
+  - title: Margin and Padding
     theory_id: 8346
-  - title: Width and height
+  - title: Width and Height
     theory_id: 8325
   - title: CSS Selectors
     theory_id: 7738
   - title: Introduction to Flexbox
     theory_id: 11760
-  - title: Orientation and display order
+  - title: Orientation and Display order
     theory_id: 11768
   - title: Flexibility, growth and contraction ratio
     theory_id: 18859
   - title: Axis alignment
     theory_id: 11784
+  - title: Google Fonts
+    theory_id: 7844
   - title: Border
     theory_id: 8355
-  - title: Lists
-    theory_id: 8178
+  - title: Fonts
+    theory_id: 15189
   - title: List style
     theory_id: 11645
+  - title: Links
+    theory_id: 11834
+  - title: Display
+    theory_id: 21211
   - title: Colors
     theory_id: 7973
+  - title: Links
+    theory_id: 19281
   - title: Background
     theory_id: 11670
   - title: Web development
     theory_id: 13931
+  - title: Intro to Lists
+    theory_id: 8178
   - title: RGB
     theory_id: 8819
   1:
@@ -104,11 +112,11 @@ topics:
     theory_id: 8388
   - title: setTimeout and setInterval
     theory_id: 9680
-  - title: Anonymous function
+  - title: Anonymous Function
     theory_id: 10865
-  - title: Arrow functions
+  - title: Arrow Functions
     theory_id: 8455
-  - title: Introduction to arrays
+  - title: Introduction to Arrays
     theory_id: 16141
   - title: Array creation
     theory_id: 16356
@@ -116,7 +124,7 @@ topics:
     theory_id: 8635
   - title: DOM events
     theory_id: 10857
-  - title: Connecting JS to HTML
+  - title: Connecting JavaScript to HTML
     theory_id: 7510
   - title: DOM methods
     theory_id: 8662
@@ -128,15 +136,15 @@ topics:
     theory_id: 8154
   - title: Multi-line programs
     theory_id: 8162
-  - title: Strings and numbers
+  - title: Strings and Numbers
     theory_id: 8194
   - title: Arithmetic operators
     theory_id: 8372
   - title: Variables
     theory_id: 8186
-  - title: Boolean and logical operators
+  - title: Boolean and Logical Operators
     theory_id: 8471
-  - title: Increment and decrement
+  - title: Increment and Decrement
     theory_id: 9102
   - title: JSON
     theory_id: 6854
@@ -144,23 +152,23 @@ topics:
     theory_id: 8588
   - title: Null and Undefined
     theory_id: 8564
-  - title: Type conversion
+  - title: Type Conversion
     theory_id: 8380
-  - title: Comparison operators
+  - title: Comparison Operators
     theory_id: 8580
-  - title: Conditional operators
+  - title: Conditional Operators
     theory_id: 8889
-  - title: For loops
+  - title: For Loops
     theory_id: 9119
   2:
   - title: ClassList
     theory_id: 11653
   3:
-  - title: Introduction to operating systems
+  - title: Introduction to Operating systems
     theory_id: 9704
   - title: Command line overview
     theory_id: 8977
-  - title: Parameters and options
+  - title: Parameters and Options
     theory_id: 9746
   - title: Introduction to Linux
     theory_id: 9526
